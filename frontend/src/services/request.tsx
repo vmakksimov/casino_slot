@@ -2,8 +2,7 @@ import axios from 'axios';
 
 export const request = async (baseURL: string, url: string, method: string, data: any) => {
     try {
-        const user = localStorage.getItem('access');
-        const auth = JSON.parse(user || '{}');
+        
 
         const headers: any = {};
 
@@ -12,6 +11,7 @@ export const request = async (baseURL: string, url: string, method: string, data
             url,
             method,
             headers,
+            data
             // withCredentials: true, 
         };
 

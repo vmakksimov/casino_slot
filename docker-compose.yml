@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-  game_service:
+  backend:
     build:
       context: ./backend
     volumes:
@@ -13,10 +13,21 @@ services:
     networks:
       - backend
 
+  frontend:
+    build:
+      context: ./frontend
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    ports:
+      - "5173:5173"
+    networks:
+      - frontend
   
 
 
 
 networks:
   backend:
+  frontend:
   
