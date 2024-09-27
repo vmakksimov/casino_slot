@@ -1,5 +1,5 @@
 
-const { spin } = require('../game/game_play');
+const { play } = require('../game/game_play');
 const { simulate } = require('../game/game_sim');
 const { rtp } = require('../game/game_rtp');
 const { deposit, withdraw } = require('../game/game_wallet');
@@ -87,7 +87,7 @@ async function postPlay(req, res) {
         if (bet > playState.playerWallet) {
             return res.status(400).json({ error: 'You do not have enough balance in your waller for this bet.' });
         }
-        const result = spin(bet);
+        const result = play(bet);
         return res.status(200).json(result);
 
     } catch (error) {

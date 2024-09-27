@@ -1,5 +1,5 @@
 const { STRIPS, WIN_MULTIPLIER, simulationState } = require('./config');
-const { spin } = require('./game_play');
+const { spin } = require('./game_logic');
 
 /**
  * Simulates a game by spinning a set number of times and calculating the total winnings.
