@@ -4,6 +4,13 @@ import * as casinoService from '../../services/casinoService';
 import HeaderSection from '../header/HeaderSection';
 import { newWinningColumns, imageMatrix } from '../../utils/matrix';
 
+/**
+ * A React functional component that renders a simulation section for a casino game.
+ * It handles user input for simulation settings, runs the simulation, and displays the results.
+ * It also allows users to deposit and withdraw funds from their simulation balance.
+ *
+ * @return {JSX.Element} The JSX element representing the simulation section.
+ */
 const SimulationSection: React.FC = () => {
     const [matrix, setMatrix] = useState<string[][]>([
         ['/img/grapes.png', '/img/apple.png', '/img/pear.png'],

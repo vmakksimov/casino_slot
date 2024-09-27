@@ -6,6 +6,15 @@ interface MatrixSectionProps {
     winningRows: Array<{ row: number; col: number }>; // Add winningRows as a prop
 }
 
+/**
+ * Renders a matrix section with spinning slots and highlights winning cells.
+ *
+ * @param {MatrixSectionProps} props - The props object containing the matrix, isSpinning, and winningRows.
+ * @param {string[][]} props.matrix - The matrix representing the slots.
+ * @param {boolean} props.isSpinning - Indicates whether the slots are spinning.
+ * @param {Array<{row: number; col: number}>} props.winningRows - The rows and columns of winning cells.
+ * @return {JSX.Element} The rendered matrix section.
+ */
 const MatrixSection: React.FC<MatrixSectionProps> = ({ matrix, isSpinning, winningRows }) => {
 
     const isWinningCell = (rowIndex: number, colIndex: number) => {

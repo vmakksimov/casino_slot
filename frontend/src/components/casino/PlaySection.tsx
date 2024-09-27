@@ -6,6 +6,20 @@ import { newWinningColumns,  imageMatrix } from '../../utils/matrix';
 import * as casinoService from '../../services/casinoService';
 
 
+/**
+ * A React functional component that simulates a slot machine game.
+ * It handles user input for betting, depositing, and withdrawing, and updates the game state accordingly.
+ * The component also displays the game's current state, including the matrix, winnings, balance, and RTP.
+ *
+ * @return {JSX.Element} The JSX element representing the slot machine game.
+ */
+/**
+ * A React functional component that simulates a slot machine game.
+ * It handles user input for betting, depositing, and withdrawing, and updates the game state accordingly.
+ * The component also displays the game's current state, including the matrix, winnings, balance, and RTP.
+ *
+ * @return {JSX.Element} The JSX element representing the slot machine game.
+ */
 const SlotMachine: React.FC = () => {
     const [matrix, setMatrix] = useState<string[][]>([
         ['/img/grapes.png', '/img/apple.png', '/img/pear.png'],
