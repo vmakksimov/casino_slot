@@ -23,13 +23,17 @@ async function fetchBalance(req, res) {
 }
 
 async function postDeposit(req, res) {
+    const maxDeposit = 1000000;
     try {
         const { amount, mode } = req.body;
         if (isNaN(amount) || amount <= 0) {
             return res.status(400).json({ error: 'Invalid amount' });
         }
 
-        console.log('mode in nodejs', mode)
+        if (amount > maxDeposit) {
+            return res.status(400).json({ error: 'You can only deposit up to 1,000,000' });
+        }
+
         if (['sim', 'play'].includes(mode) === false) {
             return res.status(400).json({ error: 'Invalid mode' });
         }
@@ -50,7 +54,7 @@ async function postWithdraw(req, res) {
             return res.status(400).json({ error: 'Invalid amount' });
         }
 
-        if (['sim', 'play'].includes(mode) === false) {
+        if (!['sim', 'play'].includes(mode)) {
             return res.status(400).json({ error: 'Invalid mode' });
         }
 
