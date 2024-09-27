@@ -15,12 +15,12 @@ function deposit(amount, mode) {
 function withdraw(amount, mode) {
     if (mode === 'play'){
         if (amount > playState.playerWallet) {
-            return res.status(400).json({ error: 'You do not have enough balance in your wallet for this withdrawal.' });
+            throw new Error('You do not have enough balance in your wallet for this withdrawal.');
         }
         walletBalance = playState.playerWallet -= amount
     } else{
         if (amount > simulationState.playerWallet) {
-            return res.status(400).json({ error: 'You do not have enough balance in your wallet for this withdrawal.' });
+            throw new Error('You do not have enough balance in your wallet for this withdrawal.');
         }
         simWalletBalance = simulationState.playerWallet -= amount
     }
