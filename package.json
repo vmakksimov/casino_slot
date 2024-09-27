@@ -6,7 +6,7 @@
   "scripts": {
     "install-server": "npm install --prefix backend",
     "install-client": "npm install --prefix frontend",
-    "install-both": "npm run install-server && npm run install-client",
+    "install-both": "npm run install-backend && npm run install-frontend",
     "deploy": "npm run build --prefix backend && npm start --prefix backend",
     "server": "npm run watch --prefix backend",
     "test": "echo \"Error: no test specified\" && exit 1"
