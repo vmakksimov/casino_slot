@@ -9,7 +9,7 @@
     "install-both": "npm run install-backend && npm run install-frontend",
     "deploy": "npm run build --prefix backend && npm start --prefix backend",
     "server": "npm run watch --prefix backend",
-    "test": "npm test --prefix server"
+    "test": "npm test --prefix backend"
   },
   "keywords": [],
   "author": "",
