@@ -5,10 +5,10 @@
   "main": "index.js",
   "scripts": {
     "install-server": "npm install --prefix backend",
-    "install-client": "npm install --prefix client",
+    "install-client": "npm install --prefix frontend",
     "install-both": "npm run install-server && npm run install-client",
-    "deploy": "npm run build --prefix client && npm start --prefix server",
-    "server": "npm run watch --prefix server",
+    "deploy": "npm run build --prefix backend && npm start --prefix backend",
+    "server": "npm run watch --prefix backend",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
