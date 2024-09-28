@@ -2,7 +2,7 @@
 const { play } = require('../game/game_play');
 const { simulate } = require('../game/game_sim');
 const { rtp } = require('../game/game_rtp');
-const { deposit, withdraw } = require('../game/game_wallet');
+const { playDeposit, simDeposit, playWithdraw, simWithdraw } = require('../game/game_wallet');
 const { playState, simulationState } = require('../game/config');
 
 // WALLET
@@ -37,9 +37,15 @@ async function postDeposit(req, res) {
         if (['sim', 'play'].includes(mode) === false) {
             return res.status(400).json({ error: 'Invalid mode' });
         }
+        
+        let transactionResult;
+        if (mode === 'play') {
+            transactionResult = playDeposit(amount);
+        } else {
+            transactionResult = simDeposit(amount);
+        }
 
-        const result = deposit(amount, mode);
-        return res.status(200).json(result);
+        return res.status(200).json(transactionResult);
 
     } catch (error) {
         return res.status(500).json({ error: error.message });
@@ -58,8 +64,14 @@ async function postWithdraw(req, res) {
             return res.status(400).json({ error: 'Invalid mode' });
         }
 
-        const result = withdraw(amount, mode);
-        return res.status(200).json(result);
+        let transactionResult;
+        if (mode === 'play'){
+            transactionResult = playWithdraw(amount);
+        } else {
+            transactionResult = simWithdraw(amount);
+        }
+
+        return res.status(200).json(transactionResult);
 
     } catch (error) {
         return res.status(500).json({ error: error.message });

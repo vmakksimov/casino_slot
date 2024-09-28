@@ -3,31 +3,54 @@ const { playState, simulationState } = require('./config');
 
 let walletBalance;
 let simWalletBalance;
-function deposit(amount, mode) {
-    if (mode === 'play'){
-        walletBalance = playState.playerWallet += amount
-    } else{
-        simWalletBalance = simulationState.playerWallet += amount
-    }
-    return { walletBalance, simWalletBalance }
+const message = 'You do not have enough balance in your wallet for this withdrawal.';
+/**
+ * Deposits a specified amount into the player's wallet in either play or simulation mode.
+ *
+ * @param {number} amount - The amount to deposit into the wallet.
+ * @param {string} mode - The mode of the deposit, either 'play' or 'simulation'.
+ * @return {object} An object containing the updated wallet balances for both play and simulation modes.
+ */
+// function deposit(amount, mode) {
+//     if (mode === 'play'){
+//         walletBalance = playState.playerWallet += amount
+//     } else{
+//         simWalletBalance = simulationState.playerWallet += amount
+//     }
+//     return { walletBalance, simWalletBalance }
+// }
+
+function simDeposit(amount) {
+    simWalletBalance = simulationState.playerWallet += amount
+    return { simWalletBalance };
 }
 
-function withdraw(amount, mode) {
-    if (mode === 'play'){
-        if (amount > playState.playerWallet) {
-            throw new Error('You do not have enough balance in your wallet for this withdrawal.');
-        }
-        walletBalance = playState.playerWallet -= amount
-    } else{
-        if (amount > simulationState.playerWallet) {
-            throw new Error('You do not have enough balance in your wallet for this withdrawal.');
-        }
-        simWalletBalance = simulationState.playerWallet -= amount
+function playDeposit(amount) {
+    walletBalance = playState.playerWallet += amount
+    return { walletBalance };
+}
+
+function playWithdraw(amount, mode) {
+    if (amount > playState.playerWallet) {
+        throw new Error(message);
     }
-    return { walletBalance, simWalletBalance }
+    walletBalance = playState.playerWallet -= amount
+
+    return { walletBalance };
+}
+
+function simWithdraw(amount) {
+    if (amount > simulationState.playerWallet) {
+        throw new Error(message);
+    }   
+    simWalletBalance = simulationState.playerWallet -= amount
+
+    return { simWalletBalance };
 }
 
 module.exports = {
-    deposit,
-    withdraw
+    playDeposit,
+    simDeposit,
+    playWithdraw,
+    simWithdraw
 }

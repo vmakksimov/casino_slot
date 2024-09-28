@@ -18,9 +18,17 @@ function calculateWinnings(matrix, bet) {
     }
     return winnings;
 }
+
+/**
+ * Generates a random integer within the given range.
+ *
+ * @param {number} max - The upper limit of the range (exclusive).
+ * @return {number} A random integer between 0 and max.
+ */
 function getRandomInt(max) {
     return crypto.randomInt(max);
 }
+
 /**
  * Simulates a game spin with the given bet amount.
  *

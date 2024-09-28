@@ -16,6 +16,7 @@ function simulate(count, bet) {
     simulationState.playerWallet -= totalBetAmount
     let totalwinningsFromSpin = 0;
     let simMatrix;
+    
     for (let i = 0; i < count; i++) {
         const { matrix, winnings } = spin(bet);
         totalwinningsFromSpin += winnings;

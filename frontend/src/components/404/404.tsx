@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom'; // If you're using React Router
+import { Link } from 'react-router-dom';
 
 const NotFoundPage: React.FC = () => {
     return (

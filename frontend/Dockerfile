@@ -13,9 +13,6 @@ RUN npm install
 # Copy the rest of the application code
 COPY . .
 
-# Build the app for production
-RUN npm run build
-
 EXPOSE 5173
 
 CMD ["npm", "run", "dev"]

@@ -13,13 +13,6 @@ import * as casinoService from '../../services/casinoService';
  *
  * @return {JSX.Element} The JSX element representing the slot machine game.
  */
-/**
- * A React functional component that simulates a slot machine game.
- * It handles user input for betting, depositing, and withdrawing, and updates the game state accordingly.
- * The component also displays the game's current state, including the matrix, winnings, balance, and RTP.
- *
- * @return {JSX.Element} The JSX element representing the slot machine game.
- */
 const SlotMachine: React.FC = () => {
     const [matrix, setMatrix] = useState<string[][]>([
         ['/img/grapes.png', '/img/apple.png', '/img/pear.png'],
@@ -102,10 +95,16 @@ const SlotMachine: React.FC = () => {
     };
 
     const onDeposit = async () => {
+        const maxDeposit = 1000000;
         setErrorMessage('');
 
         if (isNaN(depositValue) || depositValue <= 0) {
             setErrorMessage('The deposit amount must be number above 0!');
+            return;
+        }
+
+        if (depositValue > maxDeposit) {
+            setErrorMessage('The deposit amount must be less than or equal to $1,000,000!');
             return;
         }
 

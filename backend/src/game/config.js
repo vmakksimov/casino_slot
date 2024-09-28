@@ -1,6 +1,9 @@
 // Game configuration
 
 const SYMBOLS = ['cherry', 'apple', 'pear', 'grapes', 'bar'];
+
+
+//MATRIX
 const STRIPS = [
     Array(30).fill().map(() => SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)]),
     Array(30).fill().map(() => SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)]),
