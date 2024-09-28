@@ -4,7 +4,6 @@ const morgan = require('morgan');
 const api = require('./routes/api');
 const app = express();
 const helmet = require('helmet');
-const rateLimit = require('express-rate-limit');
 const Tokens = require('csrf');
 const cookieParser = require('cookie-parser');
 require('dotenv').config();
@@ -17,11 +16,7 @@ app.use(cors({
     credentials: true 
 }));
 
-const limiter = rateLimit({
-    windowMs: 15 * 60 * 1000, // 15 minutes
-    max: 100
-});
-app.use(limiter);
+
 app.use(morgan("combined"));
 app.use(express.json());
 
