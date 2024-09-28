@@ -103,6 +103,7 @@ async function postPlay(req, res) {
         if (bet > playState.playerWallet) {
             return res.status(400).json({ error: 'You do not have enough balance in your waller for this bet.' });
         }
+
         const result = play(bet);
         return res.status(200).json(result);
 

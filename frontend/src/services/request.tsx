@@ -5,14 +5,22 @@ export const request = async (baseURL: string, url: string, method: string, data
         
 
         const headers: any = {};
+        
+        const csrfTokenCookie = document.cookie.split('; ').find(row => row.startsWith('csrf-token='));
+        if (csrfTokenCookie) {
+            const csrfToken = csrfTokenCookie.split('=')[1];
+            if (csrfToken) {
+                headers['X-CSRFToken'] = csrfToken;
+            }
+        }
 
         const options = {
             baseURL,
             url,
             method,
             headers,
-            data
-            // withCredentials: true, 
+            data,
+            withCredentials: true, 
         };
 
         if (method !== 'GET') {
