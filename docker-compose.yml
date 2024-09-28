@@ -6,11 +6,17 @@ services:
       context: ./backend
     volumes:
       - ./backend:/app
+     
     ports:
       - "2000:2000"
     env_file:
       - ./backend/.env
+      
+    command: >
+      sh -c "npm install && npm start"
+    
     networks:
+    
       - backend
 
   frontend:
@@ -20,6 +26,7 @@ services:
       - ./frontend:/app
       - /app/node_modules
     ports:
+    
       - "5173:5173"
     networks:
       - frontend
