@@ -4,32 +4,37 @@ const { playState, simulationState } = require('./config');
 let walletBalance;
 let simWalletBalance;
 const message = 'You do not have enough balance in your wallet for this withdrawal.';
+
+
 /**
- * Deposits a specified amount into the player's wallet in either play or simulation mode.
+ * Deposits a specified amount into the player's wallet in simulation mode.
  *
  * @param {number} amount - The amount to deposit into the wallet.
- * @param {string} mode - The mode of the deposit, either 'play' or 'simulation'.
- * @return {object} An object containing the updated wallet balances for both play and simulation modes.
+ * @return {object} An object containing the updated wallet balance in simulation mode.
  */
-// function deposit(amount, mode) {
-//     if (mode === 'play'){
-//         walletBalance = playState.playerWallet += amount
-//     } else{
-//         simWalletBalance = simulationState.playerWallet += amount
-//     }
-//     return { walletBalance, simWalletBalance }
-// }
-
 function simDeposit(amount) {
     simWalletBalance = simulationState.playerWallet += amount
     return { simWalletBalance };
 }
 
+/**
+ * Deposits a specified amount into the player's wallet in play mode.
+ *
+ * @param {number} amount - The amount to deposit into the wallet.
+ * @return {object} An object containing the updated wallet balance in play mode.
+ */
 function playDeposit(amount) {
     walletBalance = playState.playerWallet += amount
     return { walletBalance };
 }
 
+/**
+ * Withdraws a specified amount from the player's wallet in play mode.
+ *
+ * @param {number} amount - The amount to withdraw from the wallet.
+ * @param {string} mode - The mode of the withdrawal (not used in this implementation).
+ * @return {object} An object containing the updated wallet balance in play mode.
+ */
 function playWithdraw(amount, mode) {
     if (amount > playState.playerWallet) {
         throw new Error(message);
@@ -39,6 +44,12 @@ function playWithdraw(amount, mode) {
     return { walletBalance };
 }
 
+/**
+ * Withdraws a specified amount from the player's wallet in simulation mode.
+ *
+ * @param {number} amount - The amount to withdraw from the wallet.
+ * @return {object} An object containing the updated wallet balance in simulation mode.
+ */
 function simWithdraw(amount) {
     if (amount > simulationState.playerWallet) {
         throw new Error(message);

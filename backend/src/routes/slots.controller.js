@@ -7,6 +7,13 @@ const { playState, simulationState } = require('../game/config');
 
 // WALLET
 
+/**
+ * Retrieves the current balance of the player's wallet in both play and simulation modes.
+ *
+ * @param {object} req - The incoming HTTP request object.
+ * @param {object} res - The outgoing HTTP response object.
+ * @return {object} A JSON response containing the play and simulation balances.
+ */
 async function fetchBalance(req, res) {
     try {
         const result = {
@@ -22,6 +29,14 @@ async function fetchBalance(req, res) {
 
 }
 
+
+/**
+ * Handles a deposit request by validating the amount and mode, then processing the transaction.
+ *
+ * @param {object} req - The incoming HTTP request object containing the deposit amount and mode.
+ * @param {object} res - The outgoing HTTP response object.
+ * @return {object} A JSON response containing the result of the transaction or an error message.
+ */
 async function postDeposit(req, res) {
     const maxDeposit = 1000000;
     try {
@@ -53,6 +68,13 @@ async function postDeposit(req, res) {
 
 }
 
+/**
+ * Handles a withdrawal request by validating the amount and mode, then processing the transaction.
+ *
+ * @param {object} req - The incoming HTTP request object containing the withdrawal amount and mode.
+ * @param {object} res - The outgoing HTTP response object.
+ * @return {object} A JSON response containing the result of the transaction or an error message.
+ */
 async function postWithdraw(req, res) {
     try {
         const { amount, mode } = req.body;
@@ -80,7 +102,13 @@ async function postWithdraw(req, res) {
 }
 
 
-// RTP
+/**
+ * Calculates the current RTP.
+ *
+ * @param {object} req - The incoming HTTP request object containing the deposit amount and mode.
+ * @param {object} res - The outgoing HTTP response object.
+ * @return {object} A JSON response containing the result of the current RTP.
+ */
 async function getRTP(req, res) {
     try {
         const result = rtp();
@@ -92,8 +120,13 @@ async function getRTP(req, res) {
 
 }
 
-
-// PLAY
+/**
+ * Initiates a single spin of the game in play mode and calucates the winnings.
+ *
+ * @param {object} req - The incoming HTTP request object containing the deposit amount and mode.
+ * @param {object} res - The outgoing HTTP response object.
+ * @return {object} A JSON response containing the result of the winnings of a single spin.
+ */
 async function postPlay(req, res) {
     try {
         const { bet } = req.body;
@@ -115,7 +148,13 @@ async function postPlay(req, res) {
 }
 
 
-// SIM
+/**
+ * Initiates a a customized number of spins in sim mode and calucates the winnings and returns rtp.
+ *
+ * @param {object} req - The incoming HTTP request object containing the deposit amount and mode.
+ * @param {object} res - The outgoing HTTP response object.
+ * @return {object} A JSON response containing the result of the simulation winnings/losses.
+ */
 async function postSim(req, res) {
     try {
         const { count, bet } = req.body;
